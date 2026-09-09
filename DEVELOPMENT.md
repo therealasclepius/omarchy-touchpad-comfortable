@@ -1,8 +1,10 @@
 # Comfortable preset preview
 
 This branch extends the per-device Trackpads panel in the upstream
-`awkent01.touchpad` plugin. It preserves that plugin ID and the existing state
-paths so current users keep their settings.
+`awkent01.touchpad` plugin. Marketplace releases use the distinct ID
+`io.github.therealasclepius.touchpad-comfortable` and retain the existing state
+paths so users of this fork keep their settings. See the README for migration
+from the old plugin ID.
 
 ## Behavior
 

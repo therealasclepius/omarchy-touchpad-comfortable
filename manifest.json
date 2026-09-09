@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "awkent01.touchpad",
-  "name": "Touchpad",
-  "version": "1.1.0-preview",
-  "author": "awkent01",
+  "id": "io.github.therealasclepius.touchpad-comfortable",
+  "name": "Touchpad Comfortable",
+  "version": "1.1.1-preview",
+  "author": "Kosta Hantzis; based on awkent01",
   "description": "Per-device touchpad controls with an optional Comfortable preset and undo",
   "kinds": [
     "bar-widget"
@@ -12,9 +12,10 @@
     "barWidget": "Panel.qml"
   },
   "barWidget": {
-    "displayName": "Touchpad",
+    "displayName": "Touchpad Comfortable",
     "description": "Per-device touchpad controls with an optional Comfortable preset and undo",
     "category": "Input",
     "allowMultiple": false
-  }
+  },
+  "license": "MIT"
 }

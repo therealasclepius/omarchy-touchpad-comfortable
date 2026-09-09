@@ -1,4 +1,4 @@
-# Touchpad — Omarchy bar widget
+# Touchpad Comfortable — Omarchy bar widget
 
 A bar widget for [Omarchy](https://omarchy.org) with independent controls for
 multiple trackpads. Select a device at the top of the panel before adjusting it.
@@ -76,15 +76,41 @@ omarchy plugin add https://github.com/therealasclepius/omarchy-touchpad-comforta
 
 This is a community preview based on
 [awkent01's Touchpad widget](https://github.com/awkent01/omarchy-touchpad-widget),
-with the original MIT license and attribution retained. It replaces that widget
-and preserves its plugin ID for compatibility. Back up an existing installation
-before switching repositories; do not install duplicate copies with the same ID.
-No administrator access is needed.
+with the original MIT license and attribution retained. It has its own plugin ID,
+`io.github.therealasclepius.touchpad-comfortable`, for independent marketplace
+installation. No administrator access is needed. Enable only one touchpad
+controller at a time to avoid conflicting settings.
 
-The upstream plugin ID remains `awkent01.touchpad`. For an existing checkout:
+### Switching from the earlier Comfortable preview
+
+Earlier releases of this fork used `awkent01.touchpad`. The plugin manager cannot
+update that installation directly to a different ID. While the shell is running,
+back up the old plugin and bar configuration, remove the old installation, then
+add this one:
 
 ```sh
-omarchy plugin enable awkent01.touchpad
+backup_dir="$HOME/.local/share/touchpad-migration-$(date +%Y%m%d-%H%M%S)"
+mkdir -p "$backup_dir"
+cp -a "$HOME/.config/omarchy/plugins/awkent01.touchpad" "$backup_dir/"
+cp -a "$HOME/.config/omarchy/shell.json" "$backup_dir/"
+omarchy plugin disable awkent01.touchpad
+omarchy plugin remove awkent01.touchpad --yes
+omarchy plugin add https://github.com/therealasclepius/omarchy-touchpad-comfortable.git --enable
+```
+
+Saved per-device settings and the preset undo point from this fork are retained
+in the existing state paths listed below. Do not delete those state files during
+migration. Bar placement may need adjusting through Omarchy's bar settings.
+External shortcuts using the old IPC target must use the new ID below.
+
+These steps also replace the original upstream widget if it is installed;
+settings from the original upstream implementation are not guaranteed to migrate.
+The backup retains the old code and bar configuration for recovery.
+
+For an existing installation under the new ID:
+
+```sh
+omarchy plugin update io.github.therealasclepius.touchpad-comfortable
 ```
 
 Settings initialize automatically on the first state read. Existing legacy
@@ -100,14 +126,14 @@ omarchy restart shell
 
 ## Keyboard commands and IPC
 
-The inherited Omarchy panel handler exposes the existing command target:
+The inherited Omarchy panel handler exposes the plugin command target:
 
 ```sh
-omarchy-shell awkent01.touchpad open
-omarchy-shell awkent01.touchpad close
-omarchy-shell awkent01.touchpad toggle
-omarchy-shell awkent01.touchpad show
-omarchy-shell awkent01.touchpad hide
+omarchy-shell io.github.therealasclepius.touchpad-comfortable open
+omarchy-shell io.github.therealasclepius.touchpad-comfortable close
+omarchy-shell io.github.therealasclepius.touchpad-comfortable toggle
+omarchy-shell io.github.therealasclepius.touchpad-comfortable show
+omarchy-shell io.github.therealasclepius.touchpad-comfortable hide
 ```
 
 ## Persistence and process behavior
@@ -156,7 +182,7 @@ check is still appropriate before release.
 ## Uninstall
 
 ```sh
-omarchy plugin remove awkent01.touchpad
+omarchy plugin remove io.github.therealasclepius.touchpad-comfortable
 ```
 
 Removing the plugin does not remove the saved state or generated device rules.

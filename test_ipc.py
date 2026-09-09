@@ -42,7 +42,7 @@ ShellRoot {
             else: raise RuntimeError('IPC harness did not start')
             assert p.stdout.strip()=='false',p.stdout
             for method,expected in [('open','true'),('close','false'),('toggle','true'),('hide','false'),('show','true')]:
-                p=ipc('awkent01.touchpad',method)
+                p=ipc('io.github.therealasclepius.touchpad-comfortable',method)
                 assert p.returncode==0,p.stderr
                 observed=ipc('verification','opened')
                 if observed.stdout.strip()!=expected:

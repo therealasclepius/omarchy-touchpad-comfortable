@@ -8,8 +8,8 @@ import "Model.js" as Model
 
 Panel {
   id: root
-  moduleName: "awkent01.touchpad"
-  ipcTarget: "awkent01.touchpad"
+  moduleName: "io.github.therealasclepius.touchpad-comfortable"
+  ipcTarget: "io.github.therealasclepius.touchpad-comfortable"
   manageIpc: true
 
   // Each panel instance can select a device; the helper serializes writes across bars.
